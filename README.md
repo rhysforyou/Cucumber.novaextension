@@ -26,7 +26,7 @@ The **Cucumber** Nova extension provides syntax highlighting and autocompletion 
 🎈 Whether your extension covers the entirety of a language's syntax or a subset, it can be helpful to describe that for users:
 -->
 
-Cucumber currently supports the following features of Important Language:
+Cucumber currently supports the following features of Gherkin:
 
 - Features, Rules, Backgrounds, Examples, and Steps
 - Tags

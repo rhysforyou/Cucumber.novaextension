@@ -4,5 +4,7 @@
   "organization": "Rhys Powell",
   "description": "Provides support for Cucumber and the Gherkin language",
   "version": "0.1.0",
-  "categories": ["languages"]
+  "categories": ["languages"],
+  "repository": "https://github.com/rhysforyou/Cucumber.novaextension",
+  "bugs": "https://github.com/rhysforyou/Cucumber.novaextension/issues"
 }
