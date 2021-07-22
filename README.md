@@ -18,7 +18,7 @@ The **Cucumber** Nova extension provides syntax highlighting and autocompletion 
 🎈 It can also be helpful to include a screenshot or GIF showing your extension in action:
 -->
 
-![](screenshot.png)
+![A screenshot of the extension in action](https://raw.githubusercontent.com/rhysforyou/Cucumber.novaextension/main/screenshot.png)
 
 <!-- ## Language Support -->
 
