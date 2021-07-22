@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="gherkin">
+    <meta>
+        <name>Gherkin (Cucumber)</name>
+        <type>structured</type>
+        <preferred-file-extension>feature</preferred-file-extension>
+    </meta>
+
+    <detectors>
+        <extension priority="1.0">feature</extension>
+    </detectors>
+
+    <indentation>
+        <increase>
+            <expression>^\s*(Feature|Example|Scenario|Background|Rule)\:(.*)$</expression>
+        </increase>
+    </indentation>
+
+    <comments>
+        <single>
+            <expression>#</expression>
+        </single>
+    </comments>
+
+    <brackets>
+    </brackets>
+
+    <surrounding-pairs>
+    </surrounding-pairs>
+
+    <scopes spell-check="true">
+        <include syntax="self" collection="comments" />
+        <include syntax="self" collection="feature" />
+        <include syntax="self" collection="background" />
+        <include syntax="self" collection="example" />
+        <include syntax="self" collection="step" />
+        <include syntax="self" collection="docstring" />
+    </scopes>
+
+    <collections>
+        <!-- Comments -->
+        <collection name="comments">
+            <scope name="gherkin.comment.single" spell-check="true">
+                <expression>(^|(?&lt;=\s))\#.*$</expression>
+            </scope>
+        </collection>
+
+        <!-- Feature -->
+        <collection name="feature">
+            <scope name="gherkin.feature">
+                <symbol type="block">
+                    <context behavior="whitespace" />
+                </symbol>
+                <expression>^(Feature)(:)\s*(.*)$</expression>
+                <capture number="1" name="gherkin.keyword.feature" />
+                <capture number="2" name="colon" />
+                <capture number="3" name="gherkin.identifier.feature-name" />
+            </scope>
+        </collection>
+
+        <!-- Background -->
+        <collection name="background">
+            <scope name="gherkin.background">
+                <symbol type="block">
+                    <context behavior="whitespace" />
+                </symbol>
+                <expression>^\s*(Background)(:)\s*(.*)$</expression>
+                <capture number="1" name="gherkin.keyword.background" />
+                <capture number="2" name="colon" />
+                <capture number="3" name="gherkin.identifier.background-name" />
+            </scope>
+        </collection>
+
+        <!-- Example -->
+        <collection name="example">
+            <scope name="gherkin.example">
+                <symbol type="block">
+                    <context behavior="whitespace" />
+                </symbol>
+                <expression>^\s*(Example|Scenario)(:)\s*(.*)$</expression>
+                <capture number="1" name="gherkin.keyword.example" />
+                <capture number="2" name="colon" />
+                <capture number="3" name="gherkin.identifier.example-name" />
+            </scope>
+        </collection>
+
+        <!-- Step -->
+        <collection name="step">
+            <scope name="gherkin.step">
+                <starts-with>
+                    <expression>(Given|When|Then|And|But|\*)\s*</expression>
+                    <capture number="1" name="gherkin.keyword.step" />
+                </starts-with>
+                <ends-with>
+                    <expression>$</expression>
+                </ends-with>
+                <subscopes>
+                    <scope name="gherkin.string" spell-check="false">
+                        <starts-with>
+                            <expression>"</expression>
+                        </starts-with>
+                        <ends-with>
+                            <expression>"</expression>
+                        </ends-with>
+                    </scope>
+                    <scope name="gherkin.value.number">
+                        <expression>\d+</expression>
+                    </scope>
+                </subscopes>
+            </scope>
+        </collection>
+
+        <!-- Docstring -->
+        <collection name="docstring">
+            <scope name="gherkin.block.string.language" spell-check="false">
+                <starts-with>
+                    <expression>^\s*(""")(\w+)\b</expression>
+                    <capture number="1" name="gherkin.markup.bracket" />
+                    <capture number="2" name="gherkin.block.string.language.name" />
+                </starts-with>
+                <ends-with>
+                    <expression>^\s*(""")</expression>
+                    <capture number="1" name="gherkin.markup.bracket" />
+                </ends-with>
+
+                <subsyntax capture="2">
+                    <alias key="js" value="javascript" />
+                    <alias key="ts" value="typescript" />
+                    <alias key="py" value="python" />
+                    <alias key="python2" value="python" />
+                    <alias key="python3" value="python" />
+                    <alias key="rb" value="ruby" />
+                    <alias key="sh" value="shell" />
+                    <cut-off>
+                        <expression>(?=""")</expression>
+                    </cut-off>
+                </subsyntax>
+            </scope>
+
+            <scope name="gherkin.block.string.plain" spell-check="false">
+                <starts-with>
+                    <expression>^\s*(""")</expression>
+                    <capture number="1" name="gherkin.markup.bracket" />
+                </starts-with>
+                <ends-with>
+                    <expression>^\s*(""")</expression>
+                    <capture number="1" name="gherkin.markup.bracket" />
+                </ends-with>
+            </scope>
+        </collection>
+    </collections>
+</syntax>
