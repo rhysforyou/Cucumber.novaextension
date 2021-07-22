@@ -30,7 +30,9 @@
 
     <scopes spell-check="true">
         <include syntax="self" collection="comments" />
+        <include syntax="self" collection="tag" />
         <include syntax="self" collection="feature" />
+        <include syntax="self" collection="rule" />
         <include syntax="self" collection="background" />
         <include syntax="self" collection="example" />
         <include syntax="self" collection="step" />
@@ -42,6 +44,13 @@
         <collection name="comments">
             <scope name="gherkin.comment.single" spell-check="true">
                 <expression>(^|(?&lt;=\s))\#.*$</expression>
+            </scope>
+        </collection>
+
+        <!-- Tag -->
+        <collection name="tag">
+            <scope name="gherkin.tag" spell-check="true">
+                <expression>@[A-Za-z_\-]+</expression>
             </scope>
         </collection>
 
@@ -58,9 +67,22 @@
             </scope>
         </collection>
 
+        <!-- Rule -->
+        <collection name="rule">
+            <scope name="gherkin.rule">
+                <symbol type="block">
+                    <context behavior="whitespace" />
+                </symbol>
+                <expression>^\s*(Rule)(:)\s*(.*)$</expression>
+                <capture number="1" name="gherkin.keyword.rule" />
+                <capture number="2" name="colon" />
+                <capture number="3" name="gherkin.identifier.rule-name" />
+            </scope>
+        </collection>
+
         <!-- Background -->
         <collection name="background">
-            <scope name="gherkin.background">
+            <scope name="gherkin.background.named">
                 <symbol type="block">
                     <context behavior="whitespace" />
                 </symbol>
@@ -68,6 +90,14 @@
                 <capture number="1" name="gherkin.keyword.background" />
                 <capture number="2" name="colon" />
                 <capture number="3" name="gherkin.identifier.background-name" />
+            </scope>
+            <scope name="gherkin.background.anonymous">
+                <symbol type="block">
+                    <context behavior="whitespace" />
+                </symbol>
+                <expression>^\s*(Background)(:)\s*$</expression>
+                <capture number="1" name="gherkin.keyword.background" />
+                <capture number="2" name="colon" />
             </scope>
         </collection>
 
