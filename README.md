@@ -18,7 +18,7 @@ The **Cucumber** Nova extension provides syntax highlighting and autocompletion 
 🎈 It can also be helpful to include a screenshot or GIF showing your extension in action:
 -->
 
-![](https://nova.app/images/en/dark/editor.png)
+![](screenshot.png)
 
 <!-- ## Language Support -->
 
@@ -28,7 +28,8 @@ The **Cucumber** Nova extension provides syntax highlighting and autocompletion 
 
 Cucumber currently supports the following features of Important Language:
 
-- Features, Backgrounds, Examples, and Steps
+- Features, Rules, Backgrounds, Examples, and Steps
+- Tags
 - String and number arguments in step definitions
 - Docstrings with embedded syntax
 
