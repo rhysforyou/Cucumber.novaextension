@@ -12,7 +12,7 @@
 
     <indentation>
         <increase>
-            <expression>^\s*(Feature|Example|Scenario|Background|Rule)\:(.*)$</expression>
+            <expression>^\s*(Feature|Example|Scenario|Scenario\sOutline|Background|Rule)\:(.*)$</expression>
         </increase>
     </indentation>
 
@@ -107,7 +107,7 @@
                 <symbol type="block">
                     <context behavior="whitespace" />
                 </symbol>
-                <expression>^\s*(Example|Scenario)(:)\s*(.*)$</expression>
+                <expression>^\s*(Example|Scenario|Scenario\sOutline)(:)\s*(.*)$</expression>
                 <capture number="1" name="gherkin.keyword.example" />
                 <capture number="2" name="colon" />
                 <capture number="3" name="gherkin.identifier.example-name" />
